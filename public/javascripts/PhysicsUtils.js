@@ -17,17 +17,33 @@ define([], function () {
 			}
 		};
 
-		this.calculateInitialSpeed = function(_dir, _speed) {
-			let dir = Number(_dir),
-				speed = Number(_speed);
+		this.calculateCollision = function(_dir, _speed, _x, _y) {
+			let dir = Number(_dir)*180/Math.PI,
+				speed = Number(_speed),
+				isHorizCollision = false,
+				isVertCollision = false,
+				postCollisionDir = 0;
 
-			// TODO : USed polar coordinates to determine the initial velocities
 			return {
-				speedX: inSpeedX - (inSpeedX * (this.drag * 1/radiusCoefficient)),
-				speedY: inSpeedY - (inSpeedX * (this.gravity * 1/massCoefficient))
+				speedX: speed * Math.cos(dir),
+				speedY: speed * Math.sin(dir),
+				dir: postCollisionDir
 			}
 		};
 
+		this.calculateInitialSpeed = function(_dir, _speed, _isHCollision, _isVCollision) {
+			let dir = Number(_dir)*180/Math.PI,
+				speed = Number(_speed),
+				isHorizCollision = _isHCollision === true,
+				isVertCollision = _isVCollision === true,
+				postCollisionDir = 0;
+
+			return {
+				speedX: speed * Math.cos(dir),
+				speedY: speed * Math.sin(dir),
+				dir: postCollisionDir
+			}
+		};
 		this.getRandomDir = function(){
 			return Math.random()*(this.dirMax-this.dirFloor)
 		};
