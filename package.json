@@ -1,14 +1,25 @@
 {
   "name": "h4",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./app.js",
+    "test-init": "node ./node_modules/jasmine/bin/jasmine.js init",
+    "test": "node ./node_modules/jasmine-node/bin/jasmine-node --color --verbose spec/",
+    "auto-test": "node ./node_modules/jasmine-node/bin/jasmine-node --color --verbose spec/  --autotest --watch routes/ src/"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "fs": "0.0.1-security",
+    "js-yaml": "^3.13.1",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0",
+    "jasmine-core": "^3.5.0",
+    "jasmine-node": "^3.0.0",
+    "request": "^2.88.0"
   }
 }

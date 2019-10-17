@@ -4,8 +4,7 @@ const yaml = require('js-yaml');
 const fs   = require('fs');
 
 try {
-	const doc = yaml.safeLoad(fs.readFileSync('/home/ixti/example.yml', 'utf8'));
-	console.log(doc);
+	const config = yaml.safeLoad(fs.readFileSync('config.yml', 'utf8'));
 
 	var indexRouter = require('./routes/index');
 	var usersRouter = require('./routes/users');

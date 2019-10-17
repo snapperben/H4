@@ -11,6 +11,8 @@ define([], function () {
 		this.startX  = 0;
 		this.startY  = 0;
 		this.initialSpeed  = 0;
+		this.speedX + 0
+		this.speedY + 0
 		this.initialDir = 0;
 	};
 	Ball.prototype.setMotion = function(_dir, _speed, _startTime){
