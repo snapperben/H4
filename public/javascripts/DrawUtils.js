@@ -6,10 +6,13 @@ define([], function () {
 	var DrawUtils = function () {
 		this.context = null;
 
-		this.drawBall = function(){
+		this.clearCanvas = function(){
 
 		}
-		this.setCanvas = function(_canvasContext){
+		this.drawBall = function(_x, _y, _radius, _col){
+
+		}
+		this.setUp = function(_canvasContext){
 
 		}
 		this.isAtBoundary = function(){
