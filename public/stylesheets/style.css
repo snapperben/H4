@@ -3,6 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.canvas-container{
+  border:solid thin;
+}
+#h4-canvas{
+  background-color: aliceblue;
+  width:100%;
+  height:100%;
 }
