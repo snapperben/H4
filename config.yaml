@@ -1,14 +1,17 @@
-constants:
-  gravity:0.1
-  drag:0.13
-  fps:60
-variables:
-  speed_floor:0.2
-  speed_max:1.2
-  dir_floor:0
-  dir_max:360
-  ball_mass_floor:0.2
-  ball_mass_max:1.2
-balls:
-  radius_floor:.25
-  radius_max:2
+express:
+  port: 3000
+web_values:
+  constants:
+    gravity: 0.1
+    drag: 0.13
+    fps: 60
+  variables:
+    speed_floor: 0.2
+    speed_max: 1.2
+    dir_floor: 0
+    dir_max: 360
+  balls:
+    radius_floor: 3
+    radius_max: 9
+    ball_mass_floor: 0.2
+    ball_mass_max: 1.2

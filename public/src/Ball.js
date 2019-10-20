@@ -2,38 +2,32 @@
  Object to encapsulate all properties of a ball
  */
 "use strict";
-var Ball = function (_id, _radius, _colour) {
+var Ball = function (_id, _radius, _mass, _colour) {
 	this.id = _id;
 	this.radius = _radius||25;
 	this.colour = _colour||xFFF;
+	this.mass = _mass
 
-	this.startX  = 0;
-	this.startY  = 0;
+	this.x  = 0;
+	this.y  = 0;
 	this.initialSpeed  = 0;
-	this.speedX + 0
-	this.speedY + 0
 	this.initialDir = 0;
 };
-Ball.prototype.setMotion = function(_dir, _speed, _startTime){
 
-};
 /**
  * Sets a ball's initialtradjectory
- * @param _dir
- * @param _speed
- * @param _startTime
+ * @param _dir - The ball's initial direction
+ * @param _speed - the ball's initial speed
  */
-Ball.prototype.fire = function(_dir, _speed, _startTime){
+Ball.prototype.fire = function(_x, _y, _dir, _speed){
 
 };
 
-/**
- * Sets a ball's new trajectory after a bounce
- * @param _dir
- * @param _speed
- * @param _startTime
- */
-Ball.prototype.bounce = function(_dir, _speed, _startTime){
+Ball.prototype.setPosition = function(_x, _y, _xSpeed, _ySpeed){
+	this.x = _x;
+	this.y = _y;
+	this.speedX = _xSpeed;
+	this.speedY = _ySpeed;
+}
 
-};
 export default Ball;

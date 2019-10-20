@@ -4,14 +4,11 @@ Object to handle all calculations of a ball on the canvas
 "use strict";
 var PhysicsUtils = function () {
 	this.calculatePositionDelta = function(_speedX, _speedY, _massCoeff, _radiusCoeff) {
-		let inSpeedX = this.numCnv(_speedX),
-			inSpeedY = this.numCnv(_speedY),
-			radiusCoefficient = this.numCnv(_radiusCoeff,1),
-			massCoefficient = this.numCnv(_massCoeff,1);
-
 		return {
-			speedX: inSpeedX - (inSpeedX * (this.drag * 1/radiusCoefficient)),
-			speedY: inSpeedY - (inSpeedX * (this.gravity * 1/massCoefficient))
+			deltaX: _speedX * this.frameTime,
+			deltaY: _speedY * this.frameTime,
+			speedX: _speedX - (_speedX * (this.drag * 1/(_radiusCoeff+_massCoeff))),
+			speedY: _speedY - (_speedY * (this.gravity * 1))
 		}
 	};
 
@@ -63,7 +60,7 @@ var PhysicsUtils = function () {
 		return Math.random()*(this.ballMassMax-this.ballMassFloor)
 	};
 
-	this.getRandomDir = function(){
+	this.getRandomRadius = function(){
 		return Math.random()*(this.dirMax-this.dirFloor)
 	};
 
@@ -80,19 +77,46 @@ var PhysicsUtils = function () {
 			(typeof _default === 'number' ? Number(_default) : _default)
 			: Number(_value)
 	};
-	this.setConstants = function(_gravity, _drag,
-								 _ballMassFloor, _ballMassMax,
-								 _dirFloor, _dirMax,
-								 _speedFloor, _speedMax){
+	this.setValue = function(_name, _value) {
+		let val = this.numCnv(_value);
+		switch(_name){
+			case 'fps':
+				this.frameTime = 1/val;
+				break;
+			case 'gravity':
+				this.gravity = val;
+				break;
+			case 'drag':
+				this.drag = val;
+				break;
+			case 'dir_floor':
+				this.dirFloor = val;
+				break;
+			case 'dir_max':
+				this.dirMax = val;
+				break;
+			case 'speed_floor':
+				this.speedFloor = val;
+				break;
+			case 'speed_max':
+				this.speedMax = val;
+				break;
+			default:
+				console.log("Physics Utils::setValue -> Unknown parameter '"+_name+"' supplied!");
+				 break
+		}
+	}
+
+	this.setValues = function(_fps, _gravity, _drag, _dirFloor, _dirMax,
+							  _speedFloor, _speedMax) {
+		this.frameTime = 1/this.numCnv(_fps);
 		this.gravity = this.numCnv(_gravity);
 		this.drag = this.numCnv(_drag);
-		this.ballMassFloor = this.numCnv(_ballMassFloor);
-		this.ballMassMax = this.numCnv(_ballMassMax);
 		this.speedFloor = this.numCnv(_speedFloor);
 		this.speedMax = this.numCnv(_speedMax);
 		this.dirFloor = this.numCnv(_dirFloor);
 		this.dirMax = this.numCnv(_dirMax)
-	};
+	}
 
 	/**
 	 * Sets up some parameters of the active space
@@ -100,7 +124,7 @@ var PhysicsUtils = function () {
 	 * @param _maxY - The maximum Y value allowed
 	 * @param _collisionEfficiency - A number which says how much a ball is slowed/sped up after a collision
 	 */
-	this.setDimentions = function(_maxX, _maxY, _collisionEfficiency){
+	this.setDimensions = function(_maxX, _maxY, _collisionEfficiency){
 		this.maximumX = this.numCnv(_maxX);
 		this.maximumY = this.numCnv(_maxY);
 		this.collisionCoefficient = 1/this.numCnv(_collisionEfficiency, 1, true)
