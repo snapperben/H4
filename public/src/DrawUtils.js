@@ -11,9 +11,12 @@ var DrawUtils = function () {
 
 	this.drawBall = function(_x, _y, _radius, _col) {
 		if (this.context) {
-			this.context.fillStyle = _col || '#FFF';
+			//this.context.strokeStyle = '#000000';
+			//this.context.fillStyle = '#000000';
+			this.context.beginPath();
 			this.context.arc(_x, _y, _radius, 0, 2 * Math.PI);
-			ctx.stroke()
+			this.context.stroke();
+			this.context.fill();
 		}
 	}
 
@@ -24,7 +27,6 @@ var DrawUtils = function () {
 
 	this.setup = function(_canvasContext){
 		this.context = _canvasContext;
-		this.context.strokeStyle = '#000000';
 	}
 }
 

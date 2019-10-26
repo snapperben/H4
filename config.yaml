@@ -3,11 +3,12 @@ express:
 web_values:
   constants:
     gravity: 0.1
-    drag: 0.13
-    fps: 60
+    drag: 0.013
+    fps: 2
+    bounce_efficiency: 1.3
   variables:
-    speed_floor: 0.2
-    speed_max: 1.2
+    speed_floor: 40
+    speed_max: 120
     dir_floor: 0
     dir_max: 360
   balls:
