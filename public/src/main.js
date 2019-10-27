@@ -4,17 +4,6 @@
 "use strict";
 //import ballController from '/src/BallController.js'
 window.addEventListener('load', (event) => {
-	Vue.component('h4-parameter', {
-	  methods: {
-		  canvasClick: function (_event) {
-		  	this.$root.ballController.canvasClick(_event)
-		  }
-	  },
-	  template: '<div></div>',
-		props:{
-
-		}
-	});
 	Vue.component('h4-canvas', {
 	  methods: {
 		  canvasClick: function (_event) {

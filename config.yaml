@@ -2,14 +2,14 @@ express:
   port: 3000
 web_values:
   constants:
-    gravity: 0.1
-    drag: 0.013
-    fps: 2
-    bounce_efficiency: 1.3
+    gravity: -0.3
+    drag: 0.01
+    fps: 60
+    bounce_efficiency: 0.75
   variables:
-    speed_floor: 40
-    speed_max: 120
-    dir_floor: 0
+    speed_floor: 70
+    speed_max: 400
+    dir_floor: 270
     dir_max: 360
   balls:
     radius_floor: 3

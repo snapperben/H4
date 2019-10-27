@@ -6,28 +6,14 @@ var PhysicsUtils = function () {
 	this.calculatePositionDelta = function(_speedX, _speedY, _massCoeff, _radiusCoeff) {
 		let deltaX = _speedX * this.frameTime,
 			deltaY = _speedY * this.frameTime,
-			newSpeedX = _speedX - (_speedX * this.drag),
-			newYSpeedY = _speedY - this.gravity;
+			newSpeedX = _speedX - ((_speedX * this.drag)*this.frameTime),
+			newYSpeedY = _speedY - (this.gravity + (_speedY * this.drag));
 
 		return {
 			deltaX: deltaX,
 			deltaY: deltaY,
 			speedX: newSpeedX,
 			speedY: newYSpeedY
-		}
-	};
-
-	this.calculateCollision = function(_dir, _speed, _x, _y) {
-		let dir = this.numCnv(_dir)/360*2*Math.PI,
-			speed = this.numCnv(_speed),
-			isHorizCollision = false,
-			isVertCollision = false,
-			postCollisionDir = 0;
-
-		return {
-			speedX: speed * Math.cos(dir),
-			speedY: speed * Math.sin(dir),
-			dir: postCollisionDir
 		}
 	};
 

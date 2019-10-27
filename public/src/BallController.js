@@ -12,13 +12,17 @@ var BallController = function () {
 				newVals = this.physicsUtils.calculatePositionDelta(currBall.speedX, currBall.speedY);
 			currBall.setPosition(currBall.x + newVals.deltaX, currBall.y + newVals.deltaY,
 								 newVals.speedX, newVals.speedY);
-			this.drawUtils.drawBall(currBall.x, currBall.y, currBall.radius, currBall.colour)
+			this.drawUtils.drawBall(currBall.x, currBall.y, currBall.radius, currBall.colour);
 
-			let collisionData = this.physicsUtils.testForCollision(currBall.x, currBall.y, currBall.radius)
+			let collisionData = this.physicsUtils.testForCollision(currBall.x, currBall.y, currBall.radius);
 			if (collisionData.isCollision) {
 				let postCollisionSpeeds = this.physicsUtils.calculatePostCollisonSpeed(currBall.speedX, currBall.speedY,
 																					   collisionData.isXCollision, collisionData.isXYCollision)
-				currBall.setPostCollisionValues(postCollisionSpeeds.speedX, postCollisionSpeeds.speedY)
+				currBall.setPostCollisionValues(postCollisionSpeeds.speedX, postCollisionSpeeds.speedY);
+
+				newVals = this.physicsUtils.calculatePositionDelta(currBall.speedX, currBall.speedY);
+				currBall.setPosition(currBall.x + newVals.deltaX, currBall.y + newVals.deltaY,
+								 newVals.speedX, newVals.speedY);
 			}
 		}
 	}
@@ -39,7 +43,7 @@ var BallController = function () {
 			ball = new this.Ball(this.ballStore.length, radius, mass),
 			initSpeeds = this.physicsUtils.calculateInitialSpeed(dir, speed);
 
-		console.log("New ball Dir:"+dir+", Speed:"+speed+" at x:"+_initialX+", y:"+_initialY+" (speedx:"+initSpeeds.speedX+", SpeedY:"+initSpeeds.speedY+")")
+		console.log("New ball Dir:"+dir+", Speed:"+speed)
 		ball.fire(_initialX, _initialY, initSpeeds.speedX, initSpeeds.speedY);
 		this.ballStore.push(ball);
 		return ball.id
@@ -55,7 +59,7 @@ var BallController = function () {
 
 	this.fullAnimationLoop = function(){
 		this.animateBalls();
-		window.requestFullAnimationFrame(this.fullAnimationLoop);
+		window.requestAnimationFrame(this.fullAnimationLoop);
 	}.bind(this)
 
 	this.resetController = function() {
@@ -115,7 +119,7 @@ var BallController = function () {
 
 		let fps = this.config.constants.fps;
 		if (fps > 25){
-			window.requestFullAnimationFrame(this.fullAnimationLoop);
+			window.requestAnimationFrame(this.fullAnimationLoop);
 		} else {
 			this.timeout = 1000/fps;
 			this.slowAnimationLoop()
